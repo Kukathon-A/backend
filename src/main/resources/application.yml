@@ -25,6 +25,7 @@ spring:
             scope:
               - email
               - profile
+            redirect-uri: ${OAUTH_GOOGLE_REDIRECT_URI}
 
           kakao:
             client-id: ${OAUTH_KAKAO_CLIENT_ID}
