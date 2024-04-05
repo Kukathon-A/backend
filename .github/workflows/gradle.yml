@@ -17,12 +17,6 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
           
-      - name: Set YML
-        run: |
-          mkdir -p src/main/resources
-          echo "${{ secrets.APPLICATION_YML }}" | base64 --decode > src/main/resources/application.yml
-          find src
-          
       - name: 저장소 Checkout
         uses: actions/checkout@v3
 
@@ -30,7 +24,7 @@ jobs:
         run: ./gradlew build
 
       - name: 도커 이미지 빌드 # (2)
-        run: cd backend && docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/kukathon-A .
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/kukathon-a .
 
       - name: Docker Hub 로그인 # (3)
         uses: docker/login-action@v2
@@ -39,16 +33,18 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Docker Hub 퍼블리시 # (4)
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/kukathon-A
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/kukathon-a
 
       - name: WAS 인스턴스 접속 및 애플리케이션 실행 # (5)
-        uses: appleboy/ssh-action@v0.1.6
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
+          port: ${{ secrets.EC2_PORT }}
           username: ${{ secrets.EC2_USERNAME }}
-          key: ${{ secrets.EC2_KEY }}
+          password: ${{ secrets.EC2_KEY }}
           script: |
             sudo docker stop $(sudo docker ps -a -q) 
             sudo docker rm $(sudo docker ps -a -q)  
-            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/kukathon-A
-            sudo docker run -d -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/kukathon-A
+            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/kukathon-a
+            sudo docker run -d -p 8080:8080 --env-file ./.env ${{ secrets.DOCKERHUB_USERNAME }}/kukathon-a
+            sudo nginx -s reload
