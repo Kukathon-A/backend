@@ -1,6 +1,5 @@
 name: Java CI with Gradle
 
-# develop 브랜치에 푸쉬 or PR 시 동작
 on:
   push:
     branches: [ "develop" ]
