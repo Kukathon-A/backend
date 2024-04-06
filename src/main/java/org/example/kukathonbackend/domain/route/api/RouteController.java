@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 public class RouteController {
     private final RouteService routeService;
 
-    // 사용자의 출발 or 도착지를 변경하는 메서드
+    // 사용자의 출발 or 도착지를 초기 입력하는 메서드
     @PostMapping
-    public ApiResponse<UserRouteResponse> editUserLocation(@RequestHeader("Authorization") String authorizationHeader,
+    public ApiResponse<UserRouteResponse> addUserLocation(@RequestHeader("Authorization") String authorizationHeader,
                                                            @RequestBody UserRouteRequest userRouteRequest) {
 
         UserRouteResponse userRouteResponse = routeService.editUserLocation(authorizationHeader, userRouteRequest);
