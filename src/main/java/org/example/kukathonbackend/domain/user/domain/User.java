@@ -33,9 +33,9 @@ public class User {
     private LocalDateTime recentAccessedTime;
 
     @Column(name = "commuting_time")
-    private int commutingTime;
+    private Integer commutingTime;
 
     @Column(name = "remain_commuting_time")
-    private int remainCommutingTime;
+    private Integer remainCommutingTime;
 
 }
