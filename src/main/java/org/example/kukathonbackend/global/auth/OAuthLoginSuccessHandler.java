@@ -14,6 +14,7 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.time.LocalDateTime;
 import java.util.Map;
 
@@ -106,7 +107,8 @@ public class OAuthLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHand
         String jwtToken = jwtUtil.generateToken(userId, TOKEN_EXPIRATION_TIME);
 
         // Jwt 토큰, 이름을 담아 리다이렉트
-        String redirectUri = String.format(REDIRECT_URI, jwtToken, name);
+        String encodedName = URLEncoder.encode(name, "UTF-8");
+        String redirectUri = String.format(REDIRECT_URI, jwtToken, encodedName);
         getRedirectStrategy().sendRedirect(request, response, redirectUri);
     }
 }
