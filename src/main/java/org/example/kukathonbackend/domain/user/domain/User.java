@@ -20,9 +20,6 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "nickname")
-    private String nickname;
-
     @Column(name = "provider")
     private String provider;
 
@@ -37,5 +34,4 @@ public class User {
 
     @Column(name = "remain_commuting_time")
     private Integer remainCommutingTime;
-
 }
