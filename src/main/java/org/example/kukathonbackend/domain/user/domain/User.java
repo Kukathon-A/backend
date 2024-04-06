@@ -17,15 +17,25 @@ public class User {
     @Column(name = "user_id")
     private Long id;
 
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "nickname")
+    private String nickname;
+
     @Column(name = "provider")
     private String provider;
 
     @Column(name = "provider_id")
     private String providerId;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "recent_accessed_time")
+    private LocalDateTime recentAccessedTime;
 
-    @Column(name = "accessed_time")
-    private LocalDateTime accessedTime;
+    @Column(name = "commuting_time")
+    private int commutingTime;
+
+    @Column(name = "remain_commuting_time")
+    private int remainCommutingTime;
+
 }
