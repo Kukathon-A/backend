@@ -41,8 +41,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
     testImplementation 'org.springframework.security:spring-security-test'
-
+    // AI
     implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+    // Json
+    implementation 'com.google.code.gson:gson:2.8.8'
     implementation 'org.json:json:20210307'
 }
 

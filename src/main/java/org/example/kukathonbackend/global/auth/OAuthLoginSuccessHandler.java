@@ -79,7 +79,7 @@ public class OAuthLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHand
                     .provider(provider)
                     .providerId(providerId)
                     .name(name)
-                    .accessedTime(accessedTime)
+                    .recentAccessedTime(accessedTime)
                     .build();
 
             // 신규 유저 정보 저장
@@ -91,7 +91,7 @@ public class OAuthLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHand
             userId = existUser.getId();
 
             // 마지막 접속 시간 변경
-            existUser.setAccessedTime(accessedTime);
+            existUser.setRecentAccessedTime(accessedTime);
 
             // 기존 유저 정보 업데이트
             userService.save(existUser);
