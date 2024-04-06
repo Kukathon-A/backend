@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.kukathonbackend.domain.route.dao.RouteRepository;
 import org.example.kukathonbackend.domain.route.domain.Route;
-import org.example.kukathonbackend.domain.user.domain.Users;
+import org.example.kukathonbackend.domain.user.domain.User;
 import org.example.kukathonbackend.domain.route.dto.request.UserRouteRequest;
 import org.example.kukathonbackend.domain.route.dto.response.UserRouteResponse;
 import org.example.kukathonbackend.domain.route.dto.response.UserCoordinateResponse;
@@ -40,16 +40,16 @@ public class RouteServiceImpl implements RouteService {
         String jwtToken = jwtUtil.getTokenFromHeader(authorizationHeader);
         Long userId = jwtUtil.getUserIdFromToken(jwtToken);
 
-        Users users = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("Users not found"));
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
         UserCoordinateResponse userCoordinateResponse = ConvertUserLocation(userRouteRequest);
 
         int commutingTime = getCommutingTime(userCoordinateResponse);
 
         // 사용자의 출근 시간 업데이트
-        users.setCommutingTime(commutingTime);
-        userRepository.save(users);
+        user.setCommutingTime(commutingTime);
+        userRepository.save(user);
 
         // 사용자의 출퇴근 경로 가져오기
         Route userRoute = routeRepository.findByUserId(userId);

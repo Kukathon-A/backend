@@ -1,9 +1,9 @@
 package org.example.kukathonbackend.domain.user.application;
 
-import org.example.kukathonbackend.domain.user.domain.Users;
+import org.example.kukathonbackend.domain.user.domain.User;
 
 public interface UserService {
-    void save(Users users);
-    Users getUserByUserId(Long userId);
-    Users getUserByProviderId(String providerId);
+    void save(User user);
+    User getUserByUserId(Long userId);
+    User getUserByProviderId(String providerId);
 }
