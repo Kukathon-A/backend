@@ -19,7 +19,7 @@ public class WeeklyGoal {
     @Column(name = "weekly_goal_id")
     private Long id;
 
-    @Column(name = "week_id")
+    @Column(name = "week_fk_id")
     private Long weekId;
 
     @Column(name = "goal", columnDefinition = "TEXT")

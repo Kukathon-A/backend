@@ -2,10 +2,6 @@ package org.example.kukathonbackend.domain.route.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.kukathonbackend.domain.user.domain.User;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -19,7 +15,7 @@ public class Route {
     @Column(name = "route_id")
     private Long id;
 
-    @Column(name = "user_id")
+    @Column(name = "user_fk_id")
     private Long userId;
 
     @Column(name = "start_location")
