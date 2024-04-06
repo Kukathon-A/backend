@@ -18,7 +18,7 @@ public class Commuting {
     @Column(name = "commuting_id")
     private Long id;
 
-    @Column(name = "week_id")
+    @Column(name = "week_fk_id")
     private Long weekId;
 
     @Column(name = "date")

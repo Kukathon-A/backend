@@ -3,7 +3,6 @@ package org.example.kukathonbackend.domain.week.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.kukathonbackend.domain.user.domain.User;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -17,7 +16,7 @@ public class Week {
     @Column(name = "week_id")
     private Long id;
 
-    @Column(name = "user_id")
+    @Column(name = "user_fk_id")
     private String userId;
 
     @Column(name = "start_day")
