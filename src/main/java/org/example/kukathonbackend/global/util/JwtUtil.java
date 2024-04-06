@@ -34,6 +34,7 @@ public class JwtUtil {
             Jws<Claims> claimsJws = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
             Claims body = claimsJws.getBody();
             log.info("유저 id를 반환합니다.");
+            log.info(String.valueOf(Long.parseLong(body.getSubject())));
             return Long.parseLong(body.getSubject());
         } catch (JwtException | IllegalArgumentException e) {
             // 토큰이 유효하지 않은 경우
