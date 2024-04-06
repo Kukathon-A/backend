@@ -19,6 +19,9 @@ public class Route {
     @Column(name = "route_id")
     private Long id;
 
+    @Column(name = "user_id")
+    private Long userId;
+
     @Column(name = "start_location")
     private String startLocation;
 
@@ -36,8 +39,4 @@ public class Route {
 
     @Column(name = "arrive_longitude")
     private String arriveLongitude;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
 }
