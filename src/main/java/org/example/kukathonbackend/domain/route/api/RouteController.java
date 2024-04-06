@@ -15,7 +15,7 @@ public class RouteController {
     private final RouteService routeService;
 
     // 사용자의 출발 or 도착지를 변경하는 메서드
-    @PatchMapping
+    @PostMapping
     public ApiResponse<UserRouteResponse> editUserLocation(@RequestHeader("Authorization") String authorizationHeader,
                                                            @RequestBody UserRouteRequest userRouteRequest) {
 
