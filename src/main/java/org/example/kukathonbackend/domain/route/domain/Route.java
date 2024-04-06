@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.example.kukathonbackend.domain.user.domain.User;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Data
-@Table(name = "route")
+@Table(name = "commuting_route")
 public class Route {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,17 +25,17 @@ public class Route {
     @Column(name = "arrive_location")
     private String arriveLocation;
 
-    @Column(name = "start_latitude")
-    private String startLatitude;
+    @Column(name = "start_latitude", precision = 10, scale = 8)
+    private BigDecimal startLatitude;
 
-    @Column(name = "start_longitude")
-    private String startLongitude;
+    @Column(name = "start_longitude", precision = 10, scale = 8)
+    private BigDecimal startLongitude;
 
-    @Column(name = "arrive_latitude")
-    private String arriveLatitude;
+    @Column(name = "arrive_latitude", precision = 10, scale = 8)
+    private BigDecimal arriveLatitude;
 
-    @Column(name = "arrive_longitude")
-    private String arriveLongitude;
+    @Column(name = "arrive_longitude", precision = 10, scale = 8)
+    private BigDecimal arriveLongitude;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
