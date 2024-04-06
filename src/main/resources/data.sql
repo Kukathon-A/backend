@@ -1,0 +1,2 @@
+INSERT INTO users (name, nickname, provider, provider_id, recent_accessed_time, commuting_time, remain_commuting_time)
+VALUES ('John Doe', 'johndoe', 'google', '123456', '2022-01-01 12:00:00', 30, 10);
