@@ -20,15 +20,13 @@ public class TaskList {
     @Column(name = "task_id")
     private Long id;
 
+    @Column(name = "commuting_id")
+    private Long commutingId;
+
     @Column(name = "task")
     private String task;
 
 
     @Column(name = "tag")
     private TagEnum tag;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "commuting_id")
-    private Commuting commuting;
-
 }

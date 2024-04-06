@@ -17,6 +17,9 @@ public class Week {
     @Column(name = "week_id")
     private Long id;
 
+    @Column(name = "user_id")
+    private String userId;
+
     @Column(name = "start_day")
     private String startDay;
 
@@ -25,9 +28,4 @@ public class Week {
 
     @Column(name = "goal")
     private String goal;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
-
 }

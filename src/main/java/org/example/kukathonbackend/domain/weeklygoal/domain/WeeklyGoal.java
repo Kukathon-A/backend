@@ -19,13 +19,12 @@ public class WeeklyGoal {
     @Column(name = "weekly_goal_id")
     private Long id;
 
+    @Column(name = "week_id")
+    private Long weekId;
+
     @Column(name = "goal", columnDefinition = "TEXT")
     private String goal;
 
     @Column(name = "goal_success")
     private Boolean goalSuccess;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "week_id")
-    private Week week;
 }
