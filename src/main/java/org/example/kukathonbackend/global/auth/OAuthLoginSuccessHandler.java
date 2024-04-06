@@ -105,8 +105,8 @@ public class OAuthLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHand
         // Jwt 토큰 발급
         String jwtToken = jwtUtil.generateToken(userId, TOKEN_EXPIRATION_TIME);
 
-        // Jwt 토큰을 담아 리다이렉트
-        String redirectUri = String.format(REDIRECT_URI, jwtToken);
+        // Jwt 토큰, 이름을 담아 리다이렉트
+        String redirectUri = String.format(REDIRECT_URI, jwtToken, name);
         getRedirectStrategy().sendRedirect(request, response, redirectUri);
     }
 }
