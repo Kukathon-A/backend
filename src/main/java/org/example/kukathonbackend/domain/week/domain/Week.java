@@ -3,7 +3,9 @@ package org.example.kukathonbackend.domain.week.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.kukathonbackend.domain.user.domain.User;
+import org.example.kukathonbackend.domain.user.domain.Users;
+
+import java.time.LocalDate;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -18,16 +20,15 @@ public class Week {
     private Long id;
 
     @Column(name = "start_day")
-    private String startDay;
+    private LocalDate startDay;
 
     @Column(name = "end_day")
-    private String endDay;
+    private LocalDate endDay;
 
     @Column(name = "goal")
     private String goal;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
-
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
+    private Users user;
 }

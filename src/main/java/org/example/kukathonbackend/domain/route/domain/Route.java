@@ -2,10 +2,9 @@ package org.example.kukathonbackend.domain.route.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.kukathonbackend.domain.user.domain.User;
+import org.example.kukathonbackend.domain.user.domain.Users;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -25,19 +24,19 @@ public class Route {
     @Column(name = "arrive_location")
     private String arriveLocation;
 
-    @Column(name = "start_latitude", precision = 10, scale = 8)
-    private BigDecimal startLatitude;
+    @Column(name = "start_latitude")
+    private String startLatitude;
 
-    @Column(name = "start_longitude", precision = 10, scale = 8)
-    private BigDecimal startLongitude;
+    @Column(name = "start_longitude")
+    private String startLongitude;
 
-    @Column(name = "arrive_latitude", precision = 10, scale = 8)
-    private BigDecimal arriveLatitude;
+    @Column(name = "arrive_latitude")
+    private String arriveLatitude;
 
-    @Column(name = "arrive_longitude", precision = 10, scale = 8)
-    private BigDecimal arriveLongitude;
+    @Column(name = "arrive_longitude")
+    private String arriveLongitude;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
+    private Users user;
 }

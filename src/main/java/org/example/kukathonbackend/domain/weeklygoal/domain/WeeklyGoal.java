@@ -25,7 +25,7 @@ public class WeeklyGoal {
     @Column(name = "goal_success")
     private Boolean goalSuccess;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "week_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
     private Week week;
 }

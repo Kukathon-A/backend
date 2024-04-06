@@ -27,7 +27,7 @@ public class TaskList {
     @Column(name = "tag")
     private TagEnum tag;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "commuting_id")
     private Commuting commuting;
 

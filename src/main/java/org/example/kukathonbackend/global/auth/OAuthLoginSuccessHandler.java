@@ -5,7 +5,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.kukathonbackend.domain.user.application.UserService;
-import org.example.kukathonbackend.domain.user.domain.User;
+import org.example.kukathonbackend.domain.user.domain.Users;
+import org.example.kukathonbackend.domain.user.domain.Users;
 import org.example.kukathonbackend.global.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -70,16 +71,16 @@ public class OAuthLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHand
             name = userAttributes.get("name").toString();
         }
 
-        User existUser = userService.getUserByProviderId(providerId); // provider id 기반으로 기존 or 신규 유저 파악
+        Users existUser = userService.getUserByProviderId(providerId); // provider id 기반으로 기존 or 신규 유저 파악
 
         if (existUser == null) {
             // 신규 유저인 경우
             log.info("신규 유저입니다. 등록을 진행합니다.");
-            User newUser = User.builder()
+            Users newUser = Users.builder()
                     .provider(provider)
                     .providerId(providerId)
                     .name(name)
-                    .accessedTime(accessedTime)
+                    .recentAccessedTime(accessedTime)
                     .build();
 
             // 신규 유저 정보 저장
@@ -91,7 +92,7 @@ public class OAuthLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHand
             userId = existUser.getId();
 
             // 마지막 접속 시간 변경
-            existUser.setAccessedTime(accessedTime);
+            existUser.setRecentAccessedTime(accessedTime);
 
             // 기존 유저 정보 업데이트
             userService.save(existUser);

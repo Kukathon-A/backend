@@ -3,7 +3,6 @@ package org.example.kukathonbackend.domain.commuting.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.kukathonbackend.domain.user.domain.User;
 import org.example.kukathonbackend.domain.week.domain.Week;
 
 import java.time.LocalDate;
@@ -27,7 +26,7 @@ public class Commuting {
     @Column(name = "commuting_time")
     private Integer commutingTime;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "week_id")
     private Week week;
 
